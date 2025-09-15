@@ -1,1 +1,149 @@
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.lib import colors
+
+# PDF file name
+pdf_filename = "Student_Management_CRM_Phase1.pdf"
+
+# Create PDF doc
+doc = SimpleDocTemplate(pdf_filename, pagesize=A4, title="Student Management CRM - Phase 1")
+styles = getSampleStyleSheet()
+styles.add(ParagraphStyle(name="Heading", fontSize=16, spaceAfter=12, leading=20, alignment=1, textColor=colors.HexColor("#1f4e79")))
+styles.add(ParagraphStyle(name="SubHeading", fontSize=13, spaceAfter=8, leading=16, textColor=colors.HexColor("#0b5394")))
+styles.add(ParagraphStyle(name="Body", fontSize=11, leading=15))
+
+content = []
+
+# Title
+content.append(Paragraph("Student Management CRM", styles["Heading"]))
+content.append(Paragraph("Phase 1 — Problem Understanding & Industry Analysis", styles["SubHeading"]))
+content.append(Spacer(1, 10))
+
+# Project Overview
+content.append(Paragraph("📌 1. Project Overview", styles["SubHeading"]))
+content.append(Paragraph("""
+<b>Project Title:</b> Student Management CRM<br/>
+<b>Industry:</b> Education (EdTech)<br/>
+<b>Project Type:</b> CRM Development<br/>
+<b>Target Users:</b><br/>
+- Primary: Students, Teachers, Administrative Staff<br/>
+- Secondary: Parents, Academic Coordinators, Management<br/>
+- Beneficiaries: Entire educational institution ecosystem
+""", styles["Body"]))
+content.append(Spacer(1, 10))
+
+# Problem Statement
+content.append(Paragraph("📖 2. Problem Statement", styles["SubHeading"]))
+content.append(Paragraph("""
+Educational institutions face major inefficiencies in managing student data due to manual processes. 
+Paper-based and spreadsheet methods cause inaccurate records, missed attendance and fee tracking, 
+poor communication, and delays in performance analysis. A centralized Student Management CRM is 
+needed to streamline operations, automate tasks, and improve overall institutional efficiency.
+""", styles["Body"]))
+content.append(Spacer(1, 10))
+
+# Requirements
+content.append(Paragraph("📝 3. Requirement Gathering", styles["SubHeading"]))
+content.append(Paragraph("""
+Requirements were identified by analyzing the needs of students, teachers, and administration staff.
+<br/><br/><b>Students:</b> Access attendance, fee status, grades, schedules.<br/>
+<b>Teachers:</b> Mark attendance, enter grades, monitor progress.<br/>
+<b>Administration:</b> Maintain student records, track fees, generate reports, manage access.
+""", styles["Body"]))
+content.append(Spacer(1, 10))
+
+# Stakeholders
+content.append(Paragraph("👥 4. Stakeholders", styles["SubHeading"]))
+content.append(Paragraph("""
+<b>Internal:</b> School Administration, Teachers, IT Team<br/>
+<b>External:</b> Students, Parents, Education Board<br/>
+<b>Beneficiaries:</b> Students, Faculty, Parents, Institution
+""", styles["Body"]))
+content.append(Spacer(1, 10))
+
+# Business Process Mapping
+content.append(Paragraph("🧩 5. Student Lifecycle Workflow (Salesforce Implementation)", styles["SubHeading"]))
+content.append(Paragraph("""
+<b>Enrollment & Onboarding:</b> Students register via portal, admin verifies and creates records.<br/>
+<b>Academic Operations:</b> Teachers mark attendance, upload grades, manage schedules.<br/>
+<b>Administrative Services:</b> Track fee payments, generate invoices, schedule reminders.<br/>
+<b>Communication & Support:</b> Send notifications, handle parent queries as cases.<br/>
+<b>Monitoring & Review:</b> Dashboards show attendance, performance, and fee trends.
+""", styles["Body"]))
+content.append(Spacer(1, 10))
+
+# Automation & Monitoring
+content.append(Paragraph("⚙️ 6. Intelligent Process Automation", styles["SubHeading"]))
+content.append(Paragraph("""
+- Attendance Tracking Triggers – auto-detect irregular attendance and alert parents<br/>
+- Digital Payment Reminders – scheduled fee notifications<br/>
+- Performance Watch Mechanism – flag low-performing students
+""", styles["Body"]))
+content.append(Spacer(1, 10))
+
+# Analytics & Forecasting
+content.append(Paragraph("📊 7. Insights & Predictive Analysis", styles["SubHeading"]))
+content.append(Paragraph("""
+- Real-Time Analytics Boards – live attendance, fee and performance data<br/>
+- Forecasting Models – predict dropouts and fee payment delays
+""", styles["Body"]))
+content.append(Spacer(1, 10))
+
+# Use Cases Table
+content.append(Paragraph("📌 8. Industry-Specific Use Cases", styles["SubHeading"]))
+data = [
+    ["Use Case", "Salesforce Implementation"],
+    ["Attendance Monitoring", "Attendance object + Flow alerts"],
+    ["Performance Tracking", "Custom Grade object + Reports/Dashboards"],
+    ["Fee Management", "Payment object + Scheduled reminders"],
+    ["Parent Communication", "Experience Cloud portal + Notifications"],
+    ["Dropout Prediction", "Prediction Builder + CRM Analytics"]
+]
+table = Table(data, colWidths=[150, 300])
+table.setStyle(TableStyle([
+    ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#1f4e79')),
+    ('TEXTCOLOR', (0,0), (-1,0), colors.white),
+    ('GRID', (0,0), (-1,-1), 0.5, colors.grey),
+    ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+    ('FONTNAME', (0,1), (-1,-1), 'Helvetica'),
+    ('VALIGN', (0,0), (-1,-1), 'MIDDLE')
+]))
+content.append(table)
+content.append(Spacer(1, 10))
+
+# AppExchange Exploration
+content.append(Paragraph("🛒 9. AppExchange Exploration", styles["SubHeading"]))
+content.append(Paragraph("""
+- SchoolApp – for complete school administration<br/>
+- Formstack – for admission and survey forms<br/>
+- Accounting Seed – for fee & transaction tracking<br/>
+- Salesforce Scheduler – for parent-teacher meetings<br/>
+- CRM Analytics – for custom dashboards
+""", styles["Body"]))
+content.append(Spacer(1, 10))
+
+# Key Insights
+content.append(Paragraph("💡 10. Key Insights from Phase 1", styles["SubHeading"]))
+content.append(Paragraph("""
+- Manual record systems cause delays and data errors.<br/>
+- Attendance, fee tracking, and performance are key focus areas.<br/>
+- Custom Salesforce solution with automation & AI can solve core challenges.<br/>
+- AppExchange tools can speed up deployment and reduce effort.
+""", styles["Body"]))
+content.append(Spacer(1, 10))
+
+# Deliverables
+content.append(Paragraph("✅ 11. Phase 1 Deliverables", styles["SubHeading"]))
+content.append(Paragraph("""
+1. Functional Requirement Report<br/>
+2. User Role & Access Matrix<br/>
+3. Process Flow Blueprint<br/>
+4. Feature Mapping Sheet<br/>
+5. App Feasibility Study
+""", styles["Body"]))
+
+# Build the PDF
+doc.build(content)
+print(f"✅ PDF generated: {pdf_filename}")
 
